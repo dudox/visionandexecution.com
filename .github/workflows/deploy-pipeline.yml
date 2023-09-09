@@ -1,0 +1,55 @@
+name: PUSH Workflow
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Install Composer Dependencies
+        run: composer update
+      - name: Generate Key
+        run: php artisan key:generate
+  digitalocean:
+    name: Deploying Vision&Execution to DigitalOcean Droplet
+    runs-on: ubuntu-latest
+    needs: [app]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: 8.1
+          extension-csv: mbstring, bcmath
+      - name: Composer install
+        run: composer update
+      - name: Deploy Vision&Execution to DigitalOcean Droplet
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rltgoDzvO"
+          SOURCE: "."
+          REMOTE_HOST: ${{ secrets.DOCTL_HOST }}
+          REMOTE_USER: ${{ secrets.DOCTL_USER }}
+          TARGET: "/var/www/html"
+          EXCLUDE: ".git/, .github/, /vendor/, composer.lock"
+      - name: Run Application Setup Commands
+        uses: appleboy/ssh-action@master
+        with:
+            host: ${{ secrets.DOCTL_HOST }}
+            username: ${{ secrets.DOCTL_USER }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            port: 22
+            script: |
+              cd "/var/www/html"
+              cp .env.example .env
+              composer install
+              sudo chmod 777 -R storage
+              php artisan config:cache
+              php artisan config:clear
