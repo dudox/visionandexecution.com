@@ -13,7 +13,7 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Composer Dependencies
         run: composer update
-      - name: Generate Key
+      - name: Generate Environment Key
         run: php artisan key:generate
   digitalocean:
     name: Deploying Vision&Execution to DigitalOcean Droplet
@@ -42,14 +42,14 @@ jobs:
       - name: Run Application Setup Commands
         uses: appleboy/ssh-action@master
         with:
-            host: ${{ secrets.DOCTL_HOST }}
-            username: ${{ secrets.DOCTL_USER }}
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
-            port: 22
-            script: |
-              cd "/var/www/html"
-              cp .env.example .env
-              composer install
-              sudo chmod 777 -R storage
-              php artisan config:cache
-              php artisan config:clear
+          host: ${{ secrets.DOCTL_HOST }}
+          username: ${{ secrets.DOCTL_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd "/var/www/html"
+            cp .env.example .env
+            composer install
+            sudo chmod 777 -R storage
+            php artisan config:cache
+            php artisan config:clear

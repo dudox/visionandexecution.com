@@ -15,7 +15,7 @@
                         <div class="team-single-one-start">
                             <div class="team-image-area">
                                 <a href="team-details.html">
-                                    <img src="{{ asset('pic_patrina.jpg') }}" class="img-fluid"
+                                    <img src="{{ asset('assets/images/female.jpeg') }}" class="img-fluid"
                                         alt="Business_Team_single" />
                                     <div class="team-social">
                                         <div class="main">
@@ -33,7 +33,7 @@
                                 <a href="team-details.html">
                                     <h5 class="title">Patrina Mack</h5>
                                 </a>
-                                <p>Founder</p>
+                                <p>Founder, & Chief Executive Officer</p>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,8 @@
                         <div class="team-single-one-start">
                             <div class="team-image-area">
                                 <a href="team-details.html">
-                                    <img src="assets/images/team/tm/02.jpg" alt="Business_Team_single" />
+                                    <img src="{{ asset('assets/images/avatar-placeholder.jpeg') }}"
+                                        alt="Business_Team_single" />
                                     <div class="team-social">
                                         <div class="main">
                                             <i class="fal fa-plus"></i>
@@ -56,9 +57,9 @@
                             </div>
                             <div class="single-details">
                                 <a href="team-details.html">
-                                    <h5 class="title">Amelia Clover</h5>
+                                    <h5 class="title">Scott Trappe</h5>
                                 </a>
-                                <p>Co-Founder</p>
+                                <p>Partner, Chief Technology Strategist</p>
                             </div>
                         </div>
                     </div>
@@ -66,7 +67,7 @@
                         <div class="team-single-one-start">
                             <div class="team-image-area">
                                 <a href="team-details.html">
-                                    <img src="assets/images/team/tm/03.jpg" alt="Business_Team_single" />
+                                    <img src="{{ asset('assets/images/female.jpeg') }}" alt="Business_Team_single" />
                                     <div class="team-social">
                                         <div class="main">
                                             <i class="fal fa-plus"></i>
@@ -81,9 +82,9 @@
                             </div>
                             <div class="single-details">
                                 <a href="team-details.html">
-                                    <h5 class="title">Beckett Hayden</h5>
+                                    <h5 class="title">Kati Bell</h5>
                                 </a>
-                                <p>Deputy Manager</p>
+                                <p>Principal – Lead Gen and Product Marketing</p>
                             </div>
                         </div>
                     </div>
@@ -91,7 +92,8 @@
                         <div class="team-single-one-start">
                             <div class="team-image-area">
                                 <a href="team-details.html">
-                                    <img src="assets/images/team/tm/04.jpg" alt="Business_Team_single" />
+                                    <img src="{{ asset('assets/images/avatar-placeholder.jpeg') }}"
+                                        alt="Business_Team_single" />
                                     <div class="team-social">
                                         <div class="main">
                                             <i class="fal fa-plus"></i>
@@ -106,9 +108,9 @@
                             </div>
                             <div class="single-details">
                                 <a href="team-details.html">
-                                    <h5 class="title">Julian Wyat</h5>
+                                    <h5 class="title">Ahmed Ahmed</h5>
                                 </a>
-                                <p>Finance Manager</p>
+                                <p>Director Of Software Engineering</p>
                             </div>
                         </div>
                     </div>
