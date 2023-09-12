@@ -3,6 +3,7 @@
 use App\Http\Controllers\CasesController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\TeamsController;
 use App\Notifications\Consultation;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
@@ -39,9 +40,11 @@ Route::prefix('cases')->group(function () {
     Route::get('refocus', [CasesController::class, 'refocus'])->name('cases.refocus');
 });
 
+Route::prefix('teams')->group(function () {
+    Route::get('/{name}', [TeamsController::class, 'team_details'])->name('teams.details');
+});
+
 Route::prefix('contact-us')->group(function () {
     Route::get('', [PagesController::class, 'contactUs'])->name('contact-us');
-    Route::post('send', function () {
-        Notification::route('mail', config('mail.from.address'))->notify(new Consultation(request()->all()));
-    })->name('contact-us.send');
+    Route::post('send', [PagesController::class, 'submitContactForm'])->name('contact-us.send');
 });
